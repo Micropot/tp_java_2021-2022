@@ -14,15 +14,18 @@ public class myInterface extends JFrame implements ActionListener {
     private JTextField zone3;
     private JTextField zone1;
     private JTextField zone2;
+    private JButton reset;
 
 
 
-    public myInterface(double latitude1, double longitude1, double latitude2, double longitude2 ){
+//Double latitude1, Double longitude1, Double latitude2, Double longitude2
+    public myInterface(Double latitude1, Double longitude1, Double latitude2, Double longitude2){
         super();
         this.latitude1 = latitude1;
         this.latitude2 = latitude2;
         this.longitude1 = longitude1;
         this.longitude2 = longitude2;
+
 
         Container fenetre = getContentPane();
         this.setSize(500,500);
@@ -90,14 +93,20 @@ public class myInterface extends JFrame implements ActionListener {
         panelCentre.add(panelSud);
 
 
-
         calcul = new JButton("calculer");
         calcul.addActionListener(this);
+        /*reset = new JButton("reset");
+        reset.addActionListener(this);*/
+
 
 
         fenetre.add(panelNord,BorderLayout.NORTH);
         fenetre.add(panelCentre, BorderLayout.CENTER);
-        fenetre.add(calcul, BorderLayout.SOUTH);
+        fenetre.add(calcul,  BorderLayout.SOUTH);
+       // fenetre.add(reset,BorderLayout.PAGE_END);
+        //Double Distance = Haversine.distance(latitude1,longitude1,latitude2,longitude2);
+        //zone3.setText(Double.toString(Distance)+" km");
+
 
         this.setVisible(true);
 
@@ -120,13 +129,15 @@ public class myInterface extends JFrame implements ActionListener {
         this.longitude2 = longitude2;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== calcul){
-            Double distance = Haversine.distance(latitude1,longitude1,latitude2,longitude2);
-            zone3.setText(Double.toString(distance));
+
+
 
             String args1 = zone1.getText();
+
             String[] parts_zone1 = args1.split(",");//permet de recuperer les valeurs entre les virgules
             for(int i = 0; i<parts_zone1.length;i++){
                 parts_zone1[i] = parts_zone1[i].trim();//permet de supprimer les espaces
@@ -148,12 +159,19 @@ public class myInterface extends JFrame implements ActionListener {
                     longitude2 = Double.parseDouble(parts_zone2[1]);
                     setLongitude2(longitude2);
                     //System.out.println(longitude1);
+                    distance = Haversine.distance(latitude1,longitude1,latitude2,longitude2);
+                    zone3.setText(Double.toString(distance)+" km");
+
+
                 }
                 catch (NumberFormatException exception){
                     System.out.println("pas le bon format de nombre");
                 }
 
 
+            }
+            else{
+                System.out.println("pas le bon nombre d'arguments donnés ");
             }
 
 
