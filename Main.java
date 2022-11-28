@@ -8,9 +8,10 @@ public class Main {
                 double longitude1 = Double.parseDouble(args[1]);
                 double latitude2 = Double.parseDouble(args[2]);
                 double longitude2 = Double.parseDouble(args[3]);
-                h = Haversine.distance(latitude1, longitude1, latitude2, longitude2);
+                //h = Haversine.distance(latitude1, longitude1, latitude2, longitude2);
+                myInterface f = new myInterface(latitude1, longitude1, latitude2, longitude2);
 
-                System.out.println("Distance calculée : "+h+"km");
+                //System.out.println("Distance calculée : "+h+"km");
             }
             catch (NumberFormatException exception){
                 System.out.println("mauvais type d'argument, il faut deux doubles.");
