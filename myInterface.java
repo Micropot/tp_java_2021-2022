@@ -83,8 +83,11 @@ public class myInterface extends JFrame implements ActionListener {
         JLabel texte4 = new JLabel("distance calculée");
         zone3 = new JTextField(20);
         zone3.setMaximumSize(zone3.getPreferredSize());
+        reset = new JButton("reset");
+        reset.addActionListener(this);
         panelSud.add(texte4);
         panelSud.add(zone3);
+        panelSud.add(reset);
 
         panelCentre.add(panelCentre1);
         panelCentre.add(panelCentre2);
@@ -176,6 +179,11 @@ public class myInterface extends JFrame implements ActionListener {
 
 
 
+        }
+        if(e.getSource() == reset){
+            zone1.setText(null);
+            zone2.setText(null);
+            zone3.setText(null);
         }
     }
 }
